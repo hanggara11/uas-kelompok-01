@@ -16,4 +16,18 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_profile_pages_render_without_database_data(): void
+    {
+        foreach ([
+            '/hanggara' => 'Hanggara',
+            '/gekya' => 'Gekya',
+            '/anonim' => 'Anonim',
+        ] as $path => $name) {
+            $this->get($path)
+                ->assertOk()
+                ->assertSeeText($name)
+                ->assertSeeText('Belum diisi');
+        }
+    }
 }
