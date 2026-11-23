@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HanggaraController;
+use App\Http\Controllers\GekyaController;
+use App\Http\Controllers\AnonimController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,8 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller(ProfileController::class)->group(function () {
-    Route::get('/hanggara', 'hanggara')->name('profiles.hanggara');
-    Route::get('/gekya', 'gekya')->name('profiles.gekya');
-    Route::get('/anonim', 'anonim')->name('profiles.anonim');
-});
+Route::get('/hanggara', [HanggaraController::class, 'index'])->name('profiles.hanggara');
+Route::get('/gekya', [GekyaController::class, 'index'])->name('profiles.gekya');
+Route::get('/anonim', [AnonimController::class, 'index'])->name('profiles.anonim');
